@@ -55,7 +55,7 @@ function fncGetPurchaseList(currentPage) {
 		<td class="ct_line02"></td>
 		<td class="ct_list_b" width="150">회원ID</td>
 		<td class="ct_line02"></td>
-		<td class="ct_list_b" width="150">회원명</td>
+		<td class="ct_list_b" width="150">상품명</td>
 		<td class="ct_line02"></td>
 		<td class="ct_list_b">전화번호</td>
 		<td class="ct_line02"></td>
@@ -77,10 +77,10 @@ function fncGetPurchaseList(currentPage) {
 		<td></td>
 		<td align="center">
 			<!-- <a href="/getUser.do?userId=${purchase.buyer.userId }">${purchase.buyer.userId }님</a> -->
-			<a href="/user/getUser?userId=${buyerId }">${buyerId }</a> 
+			<a href="/user/getUser?userId=${purchase.buyer.userId}">${purchase.buyer.userId }</a> 
 		</td>
 		<td></td>
-		<td align="center">${purchase.receiverName}</td>
+		<td align="center">${purchase.purchaseProd.prodName}</td>
 		<td></td>
 		<td align="center">${purchase.receiverPhone}</td>
 		<td></td>

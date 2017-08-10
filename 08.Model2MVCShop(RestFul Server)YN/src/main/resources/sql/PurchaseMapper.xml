@@ -98,12 +98,12 @@
   	<select id="getPurchaseList" parameterType="map" resultMap="purchaseSelectMap">
   		SELECT *
   		FROM ( SELECT inner_table.* , ROWNUM AS row_seq
-  						FROM ( 
-  										SELECT *
-  										FROM transaction
+  						FROM ( SELECT
+ 										t.*, p.prod_name, u.user_name, u.user_id
+								  		FROM  transaction t, product p, users u 
+								  		WHERE t.prod_no=p.prod_no AND t.buyer_id=u.user_id
   										<if test="buyerId !='admin' ">
-  										<!-- <if test="buyerId !='admin' "> -->
-										WHERE buyer_id = #{buyerId}
+										AND buyer_id = #{buyerId}
 										</if>
   										ORDER BY tran_no 
   																			) inner_table

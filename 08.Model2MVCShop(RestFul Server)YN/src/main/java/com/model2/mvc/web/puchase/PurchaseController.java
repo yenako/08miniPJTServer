@@ -109,22 +109,6 @@ public class PurchaseController {
 		search.setPageSize(pageSize);
 		
 		User user = (User) session.getAttribute("user");
-		
-		//added part
-		if(user.getRole()=="admin"){
-			
-			search.setSearchKeyword("admin");
-			Map<String , Object> map=purchaseService.getPurchaseList(search, user.getUserId());
-			
-			Page resultPage = new Page( search.getCurrentPage(), ((Integer)map.get("totalCount")).intValue(), pageUnit, pageSize);
-			System.out.println("resultPage : " +resultPage);
-			
-			model.addAttribute("buyerId", "admin");
-			model.addAttribute("list", map.get("list"));
-			model.addAttribute("resultPage", resultPage);
-			model.addAttribute("search", search);
-	
-		}else{
 			
 			search.setSearchKeyword(user.getUserId());
 			Map<String , Object> map=purchaseService.getPurchaseList(search, user.getUserId());
@@ -136,7 +120,6 @@ public class PurchaseController {
 			model.addAttribute("list", map.get("list"));
 			model.addAttribute("resultPage", resultPage);
 			model.addAttribute("search", search);
-		}
 
 		return "forward:/purchase/listPurchase.jsp";
 	}	
